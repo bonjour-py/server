@@ -1,0 +1,36 @@
+[submodule "secrets"]
+	path = secrets
+	url = git@github.com:bonjour-py/secrets
+	branch = .
+	fetchRecurseSubmodules = true
+
+[submodule "containers/proxy"]
+	path = containers/systemd/proxy
+	url = git@github.com:bonjour-py/proxy
+	branch = .
+	fetchRecurseSubmodules = true
+[submodule "containers/auth"]
+	path = containers/systemd/auth
+	url = git@github.com:bonjour-py/auth
+	branch = .
+	fetchRecurseSubmodules = true
+[submodule "containers/database"]
+	path = containers/systemd/database
+	url = git@github.com:bonjour-py/database
+	branch = .
+	fetchRecurseSubmodules = true
+[submodule "containers/vault"]
+	path = containers/systemd/vault
+	url = git@github.com:bonjour-py/vault
+	branch = .
+	fetchRecurseSubmodules = true
+[submodule "containers/chat"]
+	path = containers/systemd/chat
+	url = git@github.com:bonjour-py/chat
+	branch = .
+	fetchRecurseSubmodules = true
+[submodule "containers/tunnel"]
+	path = containers/systemd/tunnel
+	url = git@github.com:bonjour-py/tunnel
+	branch = .
+	fetchRecurseSubmodules = true

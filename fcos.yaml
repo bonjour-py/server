@@ -1,0 +1,54 @@
+variant: fcos
+version: 1.6.0
+systemd:
+  units:
+    - name: rpm-ostree-install-s3fs.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Layer s3fs with rpm-ostree
+        Wants=network-online.target
+        After=network-online.target
+        Before=zincati.service
+        ConditionPathExists=!/var/lib/%N.stamp
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive s3fs-fuse
+        ExecStart=/bin/touch /var/lib/%N.stamp
+        ExecStart=/bin/systemctl --no-block reboot
+        [Install]
+        WantedBy=multi-user.target
+storage:
+  files:
+    - path: /etc/sysctl.d/local.conf
+      contents:
+        inline: |
+          net.ipv4.ip_unprivileged_port_start = 0
+          net.core.rmem_max = 2500000
+          net.core.wmem_max = 2500000
+    - path: /etc/systemd/resolved.conf.d/bonjour.zone.conf
+      contents:
+        inline: |
+          [Resolve]
+          Domains = bonjour.zone
+    - path: /var/lib/systemd/linger/core
+  directories:
+    - path: /home/core/.config
+      user: 
+        name: core
+      group:
+        name: core
+  links:
+    - path: /home/core/.config/containers
+      target: ../server/containers
+      user: 
+        name: core
+      group: 
+        name: core
+    - path: /home/core/.config/secrets
+      target: ../server/secrets
+      user: 
+        name: core
+      group: 
+        name: core
