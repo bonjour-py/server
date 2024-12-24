@@ -29,6 +29,11 @@
 	url = git@github.com:bonjour-py/chat
 	branch = .
 	fetchRecurseSubmodules = true
+[submodule "containers/files"]
+	path = containers/systemd/files
+	url = git@github.com:bonjour-py/files
+	branch = .
+	fetchRecurseSubmodules = true
 [submodule "containers/tunnel"]
 	path = containers/systemd/tunnel
 	url = git@github.com:bonjour-py/tunnel
